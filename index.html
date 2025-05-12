@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RGB Color Mixer by [Abishek]</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #fefefe;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .color-box {
+      width: 350px;
+      height: 100px;
+      margin: 20px auto;
+      line-height: 100px;
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
+    }
+
+    .sliders {
+      width: 60%;
+      margin: auto;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .slider-container {
+      text-align: center;
+    }
+
+    input[type="range"] {
+      width: 120px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 8px 16px;
+      background-color: #ff6600;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #cc5200;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎨 RGB Mixer by [Your Name]</h2>
+  <div class="color-box" id="previewBox">rgb(255, 0, 0)</div>
+
+  <div class="sliders">
+    <div class="slider-container">
+      <label>Red<br />
+      <input type="range" id="redSlider" min="0" max="255" value="0" oninput="updateColor()" />
+      <div id="redValue">0</div></label>
+    </div>
+
+    <div class="slider-container">
+      <label>Green<br />
+      <input type="range" id="greenSlider" min="0" max="255" value="0" oninput="updateColor()" />
+      <div id="greenValue">0</div></label>
+    </div>
+
+    <div class="slider-container">
+      <label>Blue<br />
+      <input type="range" id="blueSlider" min="0" max="255" value="0" oninput="updateColor()" />
+      <div id="blueValue">0</div></label>
+    </div>
+  </div>
+
+  <button onclick="resetSliders()">Reset</button>
+
+  <script>
+    function updateColor() {
+      const r = document.getElementById('redSlider').value;
+      const g = document.getElementById('greenSlider').value;
+      const b = document.getElementById('blueSlider').value;
+
+      document.getElementById('redValue').innerText = r;
+      document.getElementById('greenValue').innerText = g;
+      document.getElementById('blueValue').innerText = b;
+
+      const rgb = `rgb(${r}, ${g}, ${b})`;
+      document.getElementById('previewBox').style.backgroundColor = rgb;
+      document.getElementById('previewBox').innerText = rgb;
+    }
+
+    function resetSliders() {
+      document.getElementById('redSlider').value = 0;
+      document.getElementById('greenSlider').value = 0;
+      document.getElementById('blueSlider').value = 0;
+      updateColor();
+    }
+
+    window.onload = updateColor;
+  </script>
+</body>
+</html>
